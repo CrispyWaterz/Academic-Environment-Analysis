@@ -7,6 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/12i6b2n2JTpZh0s1wElbqoX-vQnq2dF0P
 """
 
+import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -20,6 +21,8 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score, mean_absolute_error
 import matplotlib.pyplot as plt
+
+st.title("Analisis Lingkungan Akademik Mahasiswa")
 
 file = "SURVEY PENGARUH VARIABLE EKSTERNAL TERHADAP PRESTASI AKADEMIK MAHASISWA (Responses).xlsx - per 3Nov2024.csv"
 df = pd.read_csv(file)

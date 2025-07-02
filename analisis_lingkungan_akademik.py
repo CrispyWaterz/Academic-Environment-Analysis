@@ -87,7 +87,7 @@ plt.figure(figsize=(8,6))
 sns.scatterplot(data=df, x='PCA1', y='PCA2', hue='Cluster', palette='Set2')
 plt.title("Cluster Mahasiswa Berdasarkan Lingkungan Belajar")
 st.pyplot()
-st.pyplot(plt)
+
 
 st.header("3. Prediksi IPK Mahasiswa")
 # Buang kolom identitas
@@ -152,7 +152,7 @@ plt.xlabel("Actual IPK")
 plt.ylabel("Predicted IPK (Linear Regression)")
 plt.title("Actual vs Predicted IPK (Linear Regression)")
 st.pyplot()
-st.pyplot(plt)
+
 
 # Plotting actual vs predicted for Random Forest
 plt.figure(figsize=(8, 6))
@@ -162,7 +162,7 @@ plt.xlabel("Actual IPK")
 plt.ylabel("Predicted IPK (Random Forest)")
 plt.title("Actual vs Predicted IPK (Random Forest)")
 st.pyplot()
-st.pyplot(plt)
+
 
 st.subheader("4.5. Hubungan Fitur dengan IPK")
 sns.scatterplot(data=df2, x='rata2_nilai', y='IPK')
@@ -170,4 +170,4 @@ plt.title("Hubungan Rata-rata Nilai dengan IPK")
 plt.xlabel("Rata-rata Nilai")
 plt.ylabel("IPK")
 st.pyplot()
-st.pyplot(plt)
+

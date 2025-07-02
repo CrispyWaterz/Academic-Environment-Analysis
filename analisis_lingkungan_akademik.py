@@ -86,7 +86,7 @@ df['PCA2'] = X_pca[:, 1]
 fig, ax = plt.subplots(figsize=(8,6))
 sns.scatterplot(data=df, x='PCA1', y='PCA2', hue='Cluster', palette='Set2')
 plt.title("Cluster Mahasiswa Berdasarkan Lingkungan Belajar")
-st.pyplot()
+st.pyplot(fig)
 
 
 st.header("3. Prediksi IPK Mahasiswa")
@@ -151,7 +151,7 @@ plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'k--', lw=2
 plt.xlabel("Actual IPK")
 plt.ylabel("Predicted IPK (Linear Regression)")
 plt.title("Actual vs Predicted IPK (Linear Regression)")
-st.pyplot()
+st.pyplot(fig)
 
 
 # Plotting actual vs predicted for Random Forest
@@ -161,7 +161,7 @@ plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'k--', lw=2
 plt.xlabel("Actual IPK")
 plt.ylabel("Predicted IPK (Random Forest)")
 plt.title("Actual vs Predicted IPK (Random Forest)")
-st.pyplot()
+st.pyplot(fig)
 
 
 st.subheader("4.5. Hubungan Fitur dengan IPK")
@@ -169,5 +169,5 @@ sns.scatterplot(data=df2, x='rata2_nilai', y='IPK')
 plt.title("Hubungan Rata-rata Nilai dengan IPK")
 plt.xlabel("Rata-rata Nilai")
 plt.ylabel("IPK")
-st.pyplot()
+st.pyplot(fig)
 

@@ -83,7 +83,7 @@ df['PCA1'] = X_pca[:, 0]
 df['PCA2'] = X_pca[:, 1]
 
 # Plot hasil cluster
-plt.figure(figsize=(8,6))
+fig, ax = plt.subplots(figsize=(8,6))
 sns.scatterplot(data=df, x='PCA1', y='PCA2', hue='Cluster', palette='Set2')
 plt.title("Cluster Mahasiswa Berdasarkan Lingkungan Belajar")
 st.pyplot()

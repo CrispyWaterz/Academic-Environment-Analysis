@@ -30,7 +30,7 @@ df
 
 df.info()
 
-print(df.isna().sum())
+st.write(df.isna().sum())
 
 # isi NaN untuk kolom angka
 numeric_cols = df.select_dtypes(include=['number']).columns
@@ -48,7 +48,7 @@ df2
 
 df2.info()
 
-print(df2.isna().sum())
+st.write(df2.isna().sum())
 
 #fill NA
 numeric_cols2 = df2.select_dtypes(include=['number']).columns
@@ -59,7 +59,7 @@ for col in object_cols2:
     mode_val2 = df2[col].mode().iloc[0]
     df2[col].fillna(mode_val2, inplace=True)
 
-print(df2.isna().sum())
+st.write(df2.isna().sum())
 
 # Drop kolom identitas seperti 'Nama'
 X_survey = df.drop(columns=['Nama', 'Program Studi'], errors='ignore')
@@ -85,7 +85,7 @@ df['PCA2'] = X_pca[:, 1]
 plt.figure(figsize=(8,6))
 sns.scatterplot(data=df, x='PCA1', y='PCA2', hue='Cluster', palette='Set2')
 plt.title("Cluster Mahasiswa Berdasarkan Lingkungan Belajar")
-plt.show()
+st.pyplot()
 
 # Buang kolom identitas
 X_ipk = df2[['rata2_nilai', 'rata2_hadir', 'jumlah_mk_diambil']]
@@ -106,34 +106,34 @@ lr.fit(X_train, y_train)
 y_pred_lr = lr.predict(X_test)
 
 # Evaluasi
-print("Random Forest R²:", r2_score(y_test, y_pred_rf))
-print("Linear Regression R²:", r2_score(y_test, y_pred_lr))
+st.write("Random Forest R²:", r2_score(y_test, y_pred_rf))
+st.write("Linear Regression R²:", r2_score(y_test, y_pred_lr))
 
 # Feature importance dari Random Forest
 importances = pd.Series(rf.feature_importances_, index=X_ipk.columns).sort_values(ascending=False)
-print("\nTop 10 Faktor Pengaruh IPK:")
-print(importances.head(10))
+st.write("\nTop 10 Faktor Pengaruh IPK:")
+st.write(importances.head(10))
 
 import matplotlib.pyplot as plt
 # Evaluate Random Forest
 r2_rf = r2_score(y_test, y_pred_rf)
 mae_rf = mean_absolute_error(y_test, y_pred_rf)
-print(f"Random Forest R²: {r2_rf:.4f}")
-print(f"Random Forest MAE: {mae_rf:.4f}")
+st.write(f"Random Forest R²: {r2_rf:.4f}")
+st.write(f"Random Forest MAE: {mae_rf:.4f}")
 
 # Evaluate Linear Regression
 r2_lr = r2_score(y_test, y_pred_lr)
 mae_lr = mean_absolute_error(y_test, y_pred_lr)
-print(f"Linear Regression R²: {r2_lr:.4f}")
-print(f"Linear Regression MAE: {mae_lr:.4f}")
+st.write(f"Linear Regression R²: {r2_lr:.4f}")
+st.write(f"Linear Regression MAE: {mae_lr:.4f}")
 
 # Cross-validation for Linear Regression
 cv_scores_lr = cross_val_score(lr, X_ipk, y_ipk, cv=5, scoring='r2')
-print(f"\nLinear Regression Cross-Validation R² (5-fold): {cv_scores_lr.mean():.4f} (+/- {cv_scores_lr.std():.4f})")
+st.write(f"\nLinear Regression Cross-Validation R² (5-fold): {cv_scores_lr.mean():.4f} (+/- {cv_scores_lr.std():.4f})")
 
 # Cross-validation for Random Forest
 cv_scores_rf = cross_val_score(rf, X_ipk, y_ipk, cv=5, scoring='r2')
-print(f"Random Forest Cross-Validation R² (5-fold): {cv_scores_rf.mean():.4f} (+/- {cv_scores_rf.std():.4f})")
+st.write(f"Random Forest Cross-Validation R² (5-fold): {cv_scores_rf.mean():.4f} (+/- {cv_scores_rf.std():.4f})")
 
 # Plotting actual vs predicted for Linear Regression
 plt.figure(figsize=(8, 6))
@@ -142,7 +142,7 @@ plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'k--', lw=2
 plt.xlabel("Actual IPK")
 plt.ylabel("Predicted IPK (Linear Regression)")
 plt.title("Actual vs Predicted IPK (Linear Regression)")
-plt.show()
+st.pyplot()
 
 # Plotting actual vs predicted for Random Forest
 plt.figure(figsize=(8, 6))
@@ -151,13 +151,13 @@ plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'k--', lw=2
 plt.xlabel("Actual IPK")
 plt.ylabel("Predicted IPK (Random Forest)")
 plt.title("Actual vs Predicted IPK (Random Forest)")
-plt.show()
+st.pyplot()
 
 sns.scatterplot(data=df2, x='rata2_nilai', y='IPK')
 plt.title("Hubungan Rata-rata Nilai dengan IPK")
 plt.xlabel("Rata-rata Nilai")
 plt.ylabel("IPK")
-plt.show()
+st.pyplot()
 
 
 

@@ -22,6 +22,31 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score, mean_absolute_error
 import matplotlib.pyplot as plt
 
+
+
+st.header("0. Unggah Dataset Anda Sendiri")
+dataset_type = st.radio(
+    "Pilih jenis dataset yang ingin dianalisis:",
+    ("Data Survey Sosial Ekonomi", "Data Nilai Transkrip Mahasiswa")
+)
+
+uploaded_file = st.file_uploader(
+    f"Unggah file {dataset_type.lower()} (.csv / .xlsx)",
+    type=['csv', 'xlsx']
+)
+
+if uploaded_file is not None:
+    if uploaded_file.name.endswith('.csv'):
+        if dataset_type == "Data Survey Sosial Ekonomi":
+            df = pd.read_csv(uploaded_file)
+        else:
+            df2 = pd.read_csv(uploaded_file)
+    else:
+        if dataset_type == "Data Survey Sosial Ekonomi":
+            df = pd.read_excel(uploaded_file)
+        else:
+            df2 = pd.read_excel(uploaded_file)
+
 st.title("Analisis Lingkungan Akademik Mahasiswa")
 st.header("1. Persiapan dan Pembersihan Data")
 file = "SURVEY PENGARUH VARIABLE EKSTERNAL TERHADAP PRESTASI AKADEMIK MAHASISWA (Responses).xlsx - per 3Nov2024.csv"

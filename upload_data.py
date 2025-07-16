@@ -10,28 +10,23 @@ Original file is located at
 import streamlit as st
 import pandas as pd
 
-
 st.title("📥 Upload Dataset Mahasiswa")
 
-# Upload file 1: Survey
-survey_file = st.file_uploader("Upload Data Survei Mahasiswa", type=['csv', 'xlsx'])
-if survey_file:
-    df_survey = pd.read_csv(survey_file) if survey_file.name.endswith('.csv') else pd.read_excel(survey_file)
-    st.session_state['df'] = df_survey
-    st.subheader("Preview Data Survei")
-    st.write(df_survey.head())
+# Upload file 1
+uploaded_file_1 = st.file_uploader("Unggah Data Survey", type=["csv", "xlsx"])
+if uploaded_file_1:
+    st.session_state['df'] = pd.read_csv(uploaded_file_1) if uploaded_file_1.name.endswith(".csv") else pd.read_excel(uploaded_file_1)
+    st.success("✅ File Data Survey berhasil diunggah")
 
-# Upload file 2: IPK
-ipk_file = st.file_uploader("Upload Data IPK Mahasiswa", type=['csv', 'xlsx'])
-if ipk_file:
-    df_ipk = pd.read_csv(ipk_file) if ipk_file.name.endswith('.csv') else pd.read_excel(ipk_file)
-    st.session_state['df2'] = df_ipk
-    st.subheader("Preview Data IPK")
-    st.write(df_ipk.head())
+# Upload file 2
+uploaded_file_2 = st.file_uploader("Unggah Data IPK", type=["csv", "xlsx"])
+if uploaded_file_2:
+    st.session_state['df2'] = pd.read_csv(uploaded_file_2) if uploaded_file_2.name.endswith(".csv") else pd.read_excel(uploaded_file_2)
+    st.success("✅ File Data IPK berhasil diunggah")
 
-# Tombol lanjut ke halaman analisis
+# Tombol lanjut jika keduanya sudah diunggah
 if 'df' in st.session_state and 'df2' in st.session_state:
-    st.success("✅ Kedua file berhasil diunggah!")
     st.page_link("pages/1_analisis_lingkungan_akademik.py", label="👉 Lanjut ke Analisis", icon="📊")
 else:
     st.info("Harap unggah kedua file terlebih dahulu untuk melanjutkan.")
+

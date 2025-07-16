@@ -147,29 +147,29 @@ st.write(f"Random Forest Cross-Validation R² (5-fold): {cv_scores_rf.mean():.4f
 
 st.subheader("4.4. Visualisasi Prediksi")
 # Plotting actual vs predicted for Linear Regression
-plt.figure(figsize=(8, 6))
+fig1, ax1 = plt.subplots(figsize=(8, 6))
 plt.scatter(y_test, y_pred_lr, alpha=0.5)
 plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'k--', lw=2)
 plt.xlabel("Actual IPK")
 plt.ylabel("Predicted IPK (Linear Regression)")
 plt.title("Actual vs Predicted IPK (Linear Regression)")
-st.pyplot(fig)
+st.pyplot(fig1)
 
 
 # Plotting actual vs predicted for Random Forest
-plt.figure(figsize=(8, 6))
+fig2, ax2 = plt.subplots(figsize=(8, 6))
 plt.scatter(y_test, y_pred_rf, alpha=0.5, color='green')
 plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'k--', lw=2)
 plt.xlabel("Actual IPK")
 plt.ylabel("Predicted IPK (Random Forest)")
 plt.title("Actual vs Predicted IPK (Random Forest)")
-st.pyplot(fig)
+st.pyplot(fig2)
 
-
+fig3, ax3 = plt.subplots(figsize=(8, 6))
 st.subheader("4.5. Hubungan Fitur dengan IPK")
 sns.scatterplot(data=df2, x='rata2_nilai', y='IPK')
 plt.title("Hubungan Rata-rata Nilai dengan IPK")
 plt.xlabel("Rata-rata Nilai")
 plt.ylabel("IPK")
-st.pyplot(fig)
+st.pyplot(fig3)
 

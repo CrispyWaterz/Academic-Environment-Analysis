@@ -32,11 +32,6 @@ if ipk_file:
 # Tombol lanjut ke halaman analisis
 if 'df' in st.session_state and 'df2' in st.session_state:
     st.success("✅ Kedua file berhasil diunggah!")
-
-    # Link ke halaman analisis (pastikan nama file di pages adalah tepat!)
     st.page_link("pages/1_analisis_lingkungan_akademik.py", label="👉 Lanjut ke Analisis", icon="📊")
-else:
-    st.info("Harap unggah kedua file terlebih dahulu untuk melanjutkan.")
-        switch_page("analisis_lingkungan_akademik")
 else:
     st.info("Harap unggah kedua file terlebih dahulu untuk melanjutkan.")

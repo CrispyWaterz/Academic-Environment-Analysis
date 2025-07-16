@@ -24,6 +24,7 @@ import matplotlib.pyplot as plt
 
 
 
+# Bagian Upload File
 st.header("0. Unggah Dataset Anda Sendiri")
 dataset_type = st.radio(
     "Pilih jenis dataset yang ingin dianalisis:",
@@ -35,17 +36,32 @@ uploaded_file = st.file_uploader(
     type=['csv', 'xlsx']
 )
 
+df = None
+df2 = None
+
 if uploaded_file is not None:
     if uploaded_file.name.endswith('.csv'):
-        if dataset_type == "Data Survey Sosial Ekonomi":
-            df = pd.read_csv(uploaded_file)
-        else:
-            df2 = pd.read_csv(uploaded_file)
+        data = pd.read_csv(uploaded_file)
     else:
-        if dataset_type == "Data Survey Sosial Ekonomi":
-            df = pd.read_excel(uploaded_file)
-        else:
-            df2 = pd.read_excel(uploaded_file)
+        data = pd.read_excel(uploaded_file)
+
+    if dataset_type == "Data Survey Sosial Ekonomi":
+        df = data
+    else:
+        df2 = data
+
+# Persiapan dan Pembersihan Data
+st.title("Analisis Lingkungan Akademik Mahasiswa")
+st.header("1. Persiapan dan Pembersihan Data")
+
+# Jika tidak upload, pakai default lokal
+if df is None:
+    file = "SURVEY PENGARUH VARIABLE EKSTERNAL TERHADAP PRESTASI AKADEMIK MAHASISWA (Responses).xlsx - per 3Nov2024.csv"
+    df = pd.read_csv(file)
+
+if df2 is None:
+    file2 = "IPK.csv"
+    df2 = pd.read_csv(file2)
 
 st.title("Analisis Lingkungan Akademik Mahasiswa")
 st.header("1. Persiapan dan Pembersihan Data")

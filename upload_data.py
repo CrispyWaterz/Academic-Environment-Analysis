@@ -9,7 +9,7 @@ Original file is located at
 
 import streamlit as st
 import pandas as pd
-from streamlit_extras.switch_page_button import switch_page
+
 
 st.title("📥 Upload Dataset Mahasiswa")
 
